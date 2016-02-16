@@ -16,7 +16,7 @@ class FolderSyncer:
         print("Syncing folders, source " + source + " target" + target)
 
         logger = CustomLogger()
-        result = dirsync.sync(source, target, 'diff', verbose=True, logger=logger)
+        result = dirsync.sync(source, target, 'sync', verbose=True, logger=logger)
 
         print(logger.messages)
         print(result)
