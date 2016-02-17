@@ -1,12 +1,13 @@
 import dirsync
+import logging
 
-class CustomLogger:
+
+class FileLogger:
     def __init__(self):
-        self.messages = []
+        logging.basicConfig(filename='sync.log',level=logging.DEBUG)
 
     def info(self, record):
-        self.messages.append(record)
-
+        logging.info(record)
 
 class FolderSyncer:
     def __init__(self):
@@ -15,10 +16,7 @@ class FolderSyncer:
     def syncFolder(self, source, target):
         print("Syncing folders, source " + source + " target" + target)
 
-        logger = CustomLogger()
+        logger = FileLogger()
         result = dirsync.sync(source, target, 'sync', verbose=True, logger=logger)
-
-        print(logger.messages)
-        print(result)
 
         return result
